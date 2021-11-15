@@ -8,7 +8,6 @@ db = client.pytech
 
 student_collection = db.students
 
-print(db.list_collection_names())
 
 print("\n- - INSERT STATEMENTS - -")
 
