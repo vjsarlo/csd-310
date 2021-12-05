@@ -1,0 +1,92 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;490&lt;/x&gt;&lt;y&gt;300&lt;/y&gt;&lt;w&gt;120&lt;/w&gt;&lt;h&gt;130&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;MUST INCLUDE
+m1=1.*
+m2=1.*
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;10;110&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;220&lt;/x&gt;&lt;y&gt;250&lt;/y&gt;&lt;w&gt;200&lt;/w&gt;&lt;h&gt;50&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;HAS MANY
+m1=1.1
+m2=1.*
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;20;180;20&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;112&lt;/x&gt;&lt;y&gt;300&lt;/y&gt;&lt;w&gt;100&lt;/w&gt;&lt;h&gt;130&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;MUST HAVE
+m1=1.1
+m2=1.*
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;110;10;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;112&lt;/x&gt;&lt;y&gt;90&lt;/y&gt;&lt;w&gt;130&lt;/w&gt;&lt;h&gt;150&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;CAN HAVE MANY
+m1=1.*
+m2=1.1
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;130;10;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;210&lt;/x&gt;&lt;y&gt;200&lt;/y&gt;&lt;w&gt;160&lt;/w&gt;&lt;h&gt;100&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=-
+m1=1.1
+m2=1.*
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;140;80&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;550&lt;/x&gt;&lt;y&gt;100&lt;/y&gt;&lt;w&gt;150&lt;/w&gt;&lt;h&gt;50&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=-
+m1=1.*
+m2=1.*
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;20;130;20&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;210&lt;/x&gt;&lt;y&gt;100&lt;/y&gt;&lt;w&gt;160&lt;/w&gt;&lt;h&gt;50&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=-
+m1=1.1
+m2=1.*
+&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;20;140;20&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;680&lt;/x&gt;&lt;y&gt;60&lt;/y&gt;&lt;w&gt;210&lt;/w&gt;&lt;h&gt;120&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;Transaction
+--
+(PK) transaction_id
+--
+transaction_name
+transaction_value
+transaction_amount
+transaction_type&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;350&lt;/x&gt;&lt;y&gt;60&lt;/y&gt;&lt;w&gt;210&lt;/w&gt;&lt;h&gt;120&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;Asset
+--
+(PK) asset_id
+--
+asset_name
+asset_value
+asset_total_amount
+asset_type&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;UMLClass&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;10&lt;/x&gt;&lt;y&gt;30&lt;/y&gt;&lt;w&gt;210&lt;/w&gt;&lt;h&gt;170&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;Client
+--
+(PK) client_id
+--
+first_name
+last_name
+address
+email
+phone
+birth_date
+start_up_date
+billing_structure&lt;/panel_attributes&gt;&lt;additional_attributes&gt;&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>70</x><y>519</y><w>210</w><h>110</h></coordinates><panel_attributes>Billing Structure
+--
+(PK) billing_structure_id
+--
+billing_structure_name
+number_transactions_made
+monthly_charge_fee</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>70</x><y>59</y><w>210</w><h>110</h></coordinates><panel_attributes>Client
+--
+(PK) client_id
+--
+first_name
+last_name
+start_up_date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>279</y><w>210</w><h>110</h></coordinates><panel_attributes>Asset
+--
+(PK) asset_id
+--
+asset_name
+asset_value
+asset_type</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>279</y><w>210</w><h>140</h></coordinates><panel_attributes>Transaction
+--
+(PK) transaction_id
+(FK) account_id
+(FK) asset_id
+--
+transaction_name
+transaction_value
+transaction_type</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>70</x><y>279</y><w>210</w><h>130</h></coordinates><panel_attributes>Account
+--
+(PK) account_id
+(FK) billing_structure_id
+(FK) client_id
+--
+account_name
+account_billing_structure</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>159</y><w>130</w><h>140</h></coordinates><panel_attributes>CAN HAVE MANY
+m1=1.*
+m2=1.1
+</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>399</y><w>100</w><h>140</h></coordinates><panel_attributes>MUST HAVE
+m1=1.1
+m2=1.*
+</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>269</y><w>150</w><h>50</h></coordinates><panel_attributes>HAS MANY
+m1=1.1
+m2=1.*
+</panel_attributes><additional_attributes>10;20;130;20</additional_attributes></element><element><id>Relation</id><coordinates><x>600</x><y>269</y><w>160</w><h>50</h></coordinates><panel_attributes>MUST INCLUDE
+m1=1.*
+m2=1.*
+</panel_attributes><additional_attributes>10;20;140;20</additional_attributes></element></diagram>
