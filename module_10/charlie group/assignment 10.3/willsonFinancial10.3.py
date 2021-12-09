@@ -6,7 +6,7 @@ from mysql.connector import errorcode
 
 config = {
     "user": "root",
-    "password": "Qexeoymp4123!",
+    "password": "(insert password)",
     "host": "127.0.0.1",
     "raise_on_warnings": True
 }
@@ -31,6 +31,10 @@ except mysql.connector.Error as err:
     else:
         print(err)
         exit(1)
+
+
+sql = ("DROP TABLE IF EXISTS client, billing_structure, account, asset, transaction")
+cursor.execute(sql)
 
 TABLES = {}
 TABLES['client'] = (
@@ -61,9 +65,9 @@ TABLES['account'] = (
 
     "  PRIMARY KEY (`account_id`), KEY `client_id` (`client_id`),"
     "  KEY `billing_structure_id` (`billing_structure_id`),"
-    "  CONSTRAINT `account_ibfk_1` FOREIGN KEY (`client_id`)"
+    "  CONSTRAINT `account_fk_1` FOREIGN KEY (`client_id`)"
     "     REFERENCES `client` (`client_id`),"
-    "  CONSTRAINT `account_ibfk_2` FOREIGN KEY (`billing_structure_id`)"
+    "  CONSTRAINT `account_fk_2` FOREIGN KEY (`billing_structure_id`)"
     "     REFERENCES `billing_structure` (`billing_structure_id`)"
     ") ENGINE=InnoDB")
 
@@ -86,9 +90,9 @@ TABLES['transaction'] = (
     "  `transaction_type`                     varchar(75)   NOT NULL,"
     "  PRIMARY KEY (`transaction_id`), KEY `account_id` (`account_id`),"
     "  KEY `asset_id` (`asset_id`),"
-    "  CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`account_id`)"
+    "  CONSTRAINT `transaction_fk_1` FOREIGN KEY (`account_id`)"
     "     REFERENCES `account` (`account_id`),"
-    "  CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`asset_id`)"
+    "  CONSTRAINT `transaction_fk_2` FOREIGN KEY (`asset_id`)"
     "     REFERENCES `asset` (`asset_id`)"
     ") ENGINE=InnoDB")
 
@@ -157,12 +161,12 @@ print('Asset OK')
 add_account = """INSERT INTO account (client_id, billing_structure_id, account_name, account_billing_structure)
                VALUES (%(client_id)s, %(billing_structure_id)s, %(account_name)s, %(account_billing_structure)s)"""
 
-account_data= [{'client_id': client_id, 'billing_structure_id': billing_structure_id, 'account_name': 'Account One', 'account_billing_structure': 'See Billing Structure ID'},
-            {'client_id': client_id, 'billing_structure_id': billing_structure_id, 'account_name': 'Account Two', 'account_billing_structure': 'See Billing Structure ID'},
-            {'client_id': client_id, 'billing_structure_id': billing_structure_id, 'account_name': 'Account Three', 'account_billing_structure': 'See Billing Structure ID'},
-            {'client_id': client_id, 'billing_structure_id': billing_structure_id, 'account_name': 'Account Four', 'account_billing_structure': 'See Billing Structure ID'},
-            {'client_id': client_id, 'billing_structure_id': billing_structure_id, 'account_name': 'Account Five', 'account_billing_structure': 'See Billing Structure ID'},
-            {'client_id': client_id, 'billing_structure_id': billing_structure_id, 'account_name': 'Account Six', 'account_billing_structure': 'See Billing Structure ID'}]
+account_data= [{'client_id': 1, 'billing_structure_id': 1, 'account_name': 'Account One', 'account_billing_structure': 'See Billing Structure ID'},
+            {'client_id': 2, 'billing_structure_id': 2, 'account_name': 'Account Two', 'account_billing_structure': 'See Billing Structure ID'},
+            {'client_id': 3, 'billing_structure_id': 2, 'account_name': 'Account Three', 'account_billing_structure': 'See Billing Structure ID'},
+            {'client_id': 4, 'billing_structure_id': 1, 'account_name': 'Account Four', 'account_billing_structure': 'See Billing Structure ID'},
+            {'client_id': 5, 'billing_structure_id': 1, 'account_name': 'Account Five', 'account_billing_structure': 'See Billing Structure ID'},
+            {'client_id': 6, 'billing_structure_id': 2, 'account_name': 'Account Six', 'account_billing_structure': 'See Billing Structure ID'}]
 
 cursor.executemany(add_account, account_data)
 
@@ -174,12 +178,12 @@ print('Account OK')
 add_transaction = """INSERT INTO transaction (account_id, asset_id, transaction_name, transaction_value, transaction_type)
               VALUES (%(account_id)s, %(asset_id)s, %(transaction_name)s, %(transaction_value)s, %(transaction_type)s)"""
 
-transaction_data = [{'account_id': account_id, 'asset_id': asset_id, 'transaction_name': 'Transaction One', 'transaction_value': '$100', 'transaction_type': 'Type One'},
-                    {'account_id': account_id, 'asset_id': asset_id, 'transaction_name': 'Transaction Two', 'transaction_value': '$200', 'transaction_type': 'Type Two'},
-                    {'account_id': account_id, 'asset_id': asset_id, 'transaction_name': 'Transaction Three', 'transaction_value': '$300', 'transaction_type': 'Type Three'},
-                    {'account_id': account_id, 'asset_id': asset_id, 'transaction_name': 'Transaction Four', 'transaction_value': '$400', 'transaction_type': 'Type Four'},
-                    {'account_id': account_id, 'asset_id': asset_id, 'transaction_name': 'Transaction Five', 'transaction_value': '$500', 'transaction_type': 'Type Five'},
-                    {'account_id': account_id, 'asset_id': asset_id, 'transaction_name': 'Transaction Six', 'transaction_value': '$600', 'transaction_type': 'Type Six'}]
+transaction_data = [{'account_id': 1, 'asset_id': 1, 'transaction_name': 'Transaction One', 'transaction_value': '$100', 'transaction_type': 'Type One'},
+                    {'account_id': 1, 'asset_id': 2, 'transaction_name': 'Transaction Two', 'transaction_value': '$200', 'transaction_type': 'Type Two'},
+                    {'account_id': 1, 'asset_id': 3, 'transaction_name': 'Transaction Three', 'transaction_value': '$300', 'transaction_type': 'Type Three'},
+                    {'account_id': 2, 'asset_id': 6, 'transaction_name': 'Transaction Four', 'transaction_value': '$400', 'transaction_type': 'Type Four'},
+                    {'account_id': 3, 'asset_id': 5, 'transaction_name': 'Transaction Five', 'transaction_value': '$500', 'transaction_type': 'Type Five'},
+                    {'account_id': 4, 'asset_id': 4, 'transaction_name': 'Transaction Six', 'transaction_value': '$600', 'transaction_type': 'Type Six'}]
                     
 
 cursor.executemany(add_transaction, transaction_data)

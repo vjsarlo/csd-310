@@ -3,7 +3,7 @@ from mysql.connector import errorcode
 
 config = {
     "user": "root",
-    "password": "Qexeoymp4123!",
+    "password": "(insert password)",
     "host": "127.0.0.1",
     "database": "willsonFinancial",
     "raise_on_warnings": True
@@ -59,6 +59,8 @@ for transaction in transactions:
     print("Transaction Name: {}".format(transaction[3]))
     print("Transaction Value: {}".format(transaction[4]))
     print("Transaction Type: {}\n".format(transaction[5]))
+
+db.close()
 
     
 
