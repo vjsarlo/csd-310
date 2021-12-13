@@ -15,10 +15,10 @@ db = mysql.connector.connect(**config)
 cursor = db.cursor()
 
 # DROP DATABASE IF EXISTS
-cursor.execute("DROP DATABASE IF EXISTS willsonFinancial")
+cursor.execute("DROP DATABASE IF EXISTS willsonFinancial1")
 
 # DEFINE DATABASE IN GLOBAL VARIABLE
-DB_NAME = 'willsonFinancial'
+DB_NAME = 'willsonFinancial1'
 
 # DEFINE CREATE_DATABASE FUNCTION
 def create_database(cursor):
@@ -46,7 +46,7 @@ except mysql.connector.Error as err:
         exit(1)
 
 # DROP TABLES IF ALREADY EXISTS
-sql = ("DROP TABLE IF EXISTS client, account, asset")
+sql = ("DROP TABLE IF EXISTS client, account, asset, account_asset")
 
 # CREATE DICTIONARY FOR TABLES
 TABLES = {}
@@ -65,7 +65,6 @@ TABLES['asset'] = (
     "  CREATE TABLE `asset` ("
     "  `asset_id`                 int             NOT NULL    AUTO_INCREMENT,"
     "  `asset_name`               varchar(75)     NOT NULL,"
-    "  `asset_value`              int             NOT NULL,"
     "  `asset_type`               varchar(75)     NOT NULL,"
     "  PRIMARY KEY (`asset_id`)"
     ") ENGINE=InnoDB")
@@ -74,14 +73,23 @@ TABLES['account'] = (
     "CREATE TABLE `account` ("
     "  `account_id`                              int             NOT NULL    AUTO_INCREMENT,"
     "  `client_id`                               int             NOT NULL,"
-    "  `asset_id`                                int             NOT NULL,"
     "  `account_name`                            varchar(75)     NOT NULL,"
     "  `number_of_transactions_made_this_month`  int     NOT NULL,"
     "  PRIMARY KEY (`account_id`), KEY `client_id` (`client_id`),"
-    "  KEY `asset_id` (`asset_id`),"
     "  CONSTRAINT `account_fk_1` FOREIGN KEY (`client_id`)"
-    "     REFERENCES `client` (`client_id`),"
-    "  CONSTRAINT `account_fk_2` FOREIGN KEY (`asset_id`)"
+    "     REFERENCES `client` (`client_id`)"
+    ") ENGINE=InnoDB")
+
+TABLES['account_asset'] = (
+       "CREATE TABLE `account_asset` ("
+    "  `account_id`                             int             NOT NULL,"
+    "  `asset_id`                               int             NOT NULL,"
+    "  `value`                                  float           NOT NULL,"
+    "  KEY `account_id` (`account_id`),"
+    "  KEY `asset_id` (`asset_id`),"
+    "  CONSTRAINT `account_asset_fk_1` FOREIGN KEY (`account_id`)"
+    "     REFERENCES `account` (`account_id`),"
+    "  CONSTRAINT `account_asset_fk_2` FOREIGN KEY (`asset_id`)"
     "     REFERENCES `asset` (`asset_id`)"
     ") ENGINE=InnoDB")
 
@@ -98,6 +106,7 @@ for table_name in TABLES:
             print(err.msg)
     else:
         print("YES")
+
 
 # CLIENT INSERTS
 add_client = """INSERT INTO client (first_name, last_name, start_up_date)
@@ -116,33 +125,47 @@ client_id = cursor.lastrowid
 print('Client Table: DONE')
 
 # ASSET INSERTS
-add_asset = """INSERT INTO asset (asset_name, asset_value, asset_type)
-               VALUES (%s, %s, %s)"""
+add_asset = """INSERT INTO asset (asset_name, asset_type)
+               VALUES (%s, %s)"""
 
-asset_data = [('Walt Disney World Stock', 100 , 'Stock'),
-                ('Crypto', 200, 'Stock'),
-                ('Apple Stock', 300, 'Stock'),
-                ('Index Funds', 400, 'RothIRA'),
-                ('Mutual Funds', 500, 'RothIRA'),
-                ('Bonds', 600, 'RothIRA')]
+asset_data = [('Walt Disney World Stock', 'Stock'),
+                ('Crypto', 'Stock'),
+                ('Apple Stock', 'Stock'),
+                ('Index Funds', 'RothIRA'),
+                ('Mutual Funds', 'RothIRA'),
+                ('Bonds', 'RothIRA')]
 
 cursor.executemany(add_asset, asset_data)
 asset_id = cursor.lastrowid
 print('Asset Table: DONE')
 
 # ACCOUNT INSERTS
-add_account = """INSERT INTO account (client_id, asset_id, account_name, number_of_transactions_made_this_month)
-               VALUES (%(client_id)s, %(asset_id)s, %(account_name)s, %(number_of_transactions_made_this_month)s)"""
+add_account = """INSERT INTO account (client_id, account_name, number_of_transactions_made_this_month)
+               VALUES (%(client_id)s, %(account_name)s, %(number_of_transactions_made_this_month)s)"""
 
-account_data= [{'client_id': 1, 'asset_id': 1, 'account_name': 'Account One', 'number_of_transactions_made_this_month': 6},
-            {'client_id': 1, 'asset_id': 2, 'account_name': 'Account Two', 'number_of_transactions_made_this_month': 6},
-            {'client_id': 3, 'asset_id': 3, 'account_name': 'Account Three', 'number_of_transactions_made_this_month': 20},
-            {'client_id': 4, 'asset_id': 6, 'account_name': 'Account Four', 'number_of_transactions_made_this_month': 5},
-            {'client_id': 5, 'asset_id': 5, 'account_name': 'Account Five', 'number_of_transactions_made_this_month': 4},
-            {'client_id': 5, 'asset_id': 4, 'account_name': 'Account Six', 'number_of_transactions_made_this_month': 4}]
+account_data= [{'client_id': 1, 'account_name': 'Account One', 'number_of_transactions_made_this_month': 6},
+               {'client_id': 1, 'account_name': 'Account Two', 'number_of_transactions_made_this_month': 6},
+               {'client_id': 3, 'account_name': 'Account Three', 'number_of_transactions_made_this_month': 20},
+               {'client_id': 4, 'account_name': 'Account Four', 'number_of_transactions_made_this_month': 5},
+               {'client_id': 5, 'account_name': 'Account Five', 'number_of_transactions_made_this_month': 4},
+               {'client_id': 5, 'account_name': 'Account Six', 'number_of_transactions_made_this_month': 4}]
 
 cursor.executemany(add_account, account_data)
 account_id = cursor.lastrowid
+print('Account Table: DONE')
+
+# ACCOUNT_ASSET INSERTS
+add_account_asset = """INSERT INTO account_asset (account_id, asset_id, value)
+               VALUES (%(account_id)s, %(asset_id)s, %(value)s)"""
+
+account_asset_data= [{'account_id': 1, 'asset_id': 1, 'value': 100},
+            {'account_id': 1, 'asset_id': 2, 'value': 200},
+            {'account_id': 2, 'asset_id': 2, 'value': 300},
+            {'account_id': 3, 'asset_id': 3, 'value': 400},
+            {'account_id': 4, 'asset_id': 1, 'value': 500},
+            {'account_id': 5, 'asset_id': 6, 'value': 600}]
+
+cursor.executemany(add_account_asset, account_asset_data)
 print('Account Table: DONE')
 
 db.commit()

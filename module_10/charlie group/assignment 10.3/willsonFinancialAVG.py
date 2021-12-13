@@ -3,7 +3,7 @@ from mysql.connector import errorcode
 # CONNECT TO DATABASE !!!(INSERT PASSWORD)!!!
 config = {
     "user": "root",
-    "password": "(insert password)",
+    "password": "Qexeoymp4123!",
     "host": "127.0.0.1",
     "database": "willsonFinancial",
     "raise_on_warnings": True
@@ -16,7 +16,6 @@ cursor = db.cursor()
 # COUNT TOTAL AMOUNT OF ASSESTS
 sqlCount = "SELECT count(*) FROM asset"
 cursor.execute(sqlCount)
-#ALLASSETS = CURSOR.FETCHALL()
 for x in cursor:
     print("- - Amount Of Assets From Clients - -\n" + str(x[0]) + " Assets\n")
 

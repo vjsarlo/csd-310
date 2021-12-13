@@ -1,0 +1,28 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>30</y><w>210</w><h>110</h></coordinates><panel_attributes>Client
+--
+(PK) client_id
+--
+first_name
+last_name
+start_up_date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>30</y><w>240</w><h>130</h></coordinates><panel_attributes>Account
+--
+(PK) account_id
+(FK) client_id
+--
+account_name
+number_of_transactions_made_this_month</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>30</y><w>210</w><h>110</h></coordinates><panel_attributes>Asset
+--
+(PK) asset_id
+--
+asset_name
+asset_value
+asset_type</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>198</x><y>20</y><w>180</w><h>50</h></coordinates><panel_attributes>CAN HAVE MANY
+m1=1.*
+m2=1.1
+</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>588</x><y>20</y><w>140</w><h>50</h></coordinates><panel_attributes>HAS MANY
+m1=1.1
+m2=1.*
+</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>220</y><w>210</w><h>70</h></coordinates><panel_attributes>Asset Account
+--
+(FK) account_id
+(FK) asset_id</panel_attributes><additional_attributes></additional_attributes></element></diagram>

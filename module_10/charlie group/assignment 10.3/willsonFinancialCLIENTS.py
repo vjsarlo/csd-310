@@ -4,7 +4,7 @@ from mysql.connector import errorcode
 # CONNECT TO DATABASE !!!(INSERT PASSWORD)!!!
 config = {
     "user": "root",
-    "password": "(insert password)",
+    "password": "Qexeoymp4123!",
     "host": "127.0.0.1",
     "database": "willsonFinancial",
     "raise_on_warnings": True
@@ -15,9 +15,10 @@ db = mysql.connector.connect(**config)
 cursor = db.cursor()
 
 
-query = ("SELECT first_name, start_up_date FROM client "
-        "WHERE start_up_date BETWEEN %s AND %s"
-        "GROUP BY start_up_date")
+query = """SELECT first_name, start_up_date FROM client
+        WHERE start_up_date BETWEEN %s AND %s
+        GROUP BY start_up_date 
+        ORDER BY start_up_date DESC"""
 
 sqlMonths = """SELECT start_up_date,
     count(*) AS total
@@ -39,5 +40,9 @@ cursor.execute(sqlMonths)
 
 print("- - Number Of Clients Who Have Joined In The Past 6 Months - -")
 for x in cursor:
-        print(" {:%b-%Y}: {} Client(s)\n".format(x[0], x[1]))
+    if x[1] > 1:
+        print(" {:%b-%Y}: {} Clients\n".format(x[0], x[1]))
+    else:
+        print(" {:%b-%Y}: {} Client\n".format(x[0], x[1]))
+    
 
